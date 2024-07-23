@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,8 +9,9 @@
 <body>
     <nav class="page-container">
         <div class="container">
-            <a href="" id="logo">
-                <h2>HOWARD CAFE</h2>
+            <a href="index.html" id="logo">
+                <img src="../images/smusicon.png" alt="Logo" style="height: 60px; vertical-align: middle;">
+                <h2 style="display: inline; vertical-align: middle;">HOWARD CAFE</h2>
             </a>
             <div class="toggle" id="mobile-menu">
                 <span class="bar"></span>
@@ -19,20 +20,22 @@
             </div>
             <ul class="menu">
                 <li class="item">
-                    <a href="pages/menu.html" class="links"> Menu </a> 
+                    <a href="../pages/menu.html" class="links"> Menu </a> 
                 </li>
                 <li class="item">
-                    <a href="pages/rating.html" class="links"> Rating </a> 
+                    <a href="../pages/rating.html" class="links"> Rating </a> 
                 </li>
                 <li class="item">
-                    <a href="pages/about.html" class="links"> About Us </a> 
+                    <a href="../pages/about.html" class="links"> About Us </a> 
                 </li>
-                <li class="btn">
+                <li class="btn" id="authButton">
                     <a href="login.html" class="button"> Log In </a>
                 </li>
             </ul>
         </div>
     </nav>
+    
+    
     
     <div class="main">
         <div class="main__container">
@@ -42,22 +45,60 @@
         </div>
     </div>
 
-    
     <div class="front_menu">
-    <div class="front_menu__container">
-            <h2 class = "front_menu__header">Our Delicious Food</h2>
+        <div class="front_menu__container">
+            <h2 class="front_menu__header">Our Delicious Food</h2>
             <div class="front_menu_img--container">
                 <img src="../images/1food.jpg" alt="Delicious Food1">
                 <img src="../images/2food.jpg" alt="Delicious Food2">
                 <img src="../images/3food.jpg" alt="Delicious Food3">
             </div>
-    </div>
+        </div>
     </div>
     
     <script src="../js/app.js"></script>
-    
-    </body>
-    </html>
+</body>
+</html> -->
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Howard_Cafe</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-content">
+            <div class="logo">
+                <img src="../images/smusicon.png" alt="Logo" style="height: 100px;">
+                <h2>HOWARD CAFE</h2>
+            </div>
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="../pages/menu.html">Menu</a></li>
+                <li><a href="../pages/rating.html">Rating</a></li>
+                <li><a href="../pages/about.html">About Us</a></li>
+            </ul>
+            <a href="login.html" class="btn">Log In</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="image-container">
+            <img src="../images/howardpic.jpg" alt="Cafe Image">
+            <header class="header">
+                <h1>SMUS Number #1 Cafe</h1>
+                <p>Come and get delicious snacks and food at <strong>Sun Centre Common</strong></p>
+            </header>
+        </div>
+    </div>
+    <div class="aboutus">
+        <h2>ABOUT US -</h2>
+        <p id="p1"> <b>A few words about <br> our cafe</b></p>
+        <p id="p2">We serve a variety of food and drinks, including sandwiches, <br> ready-food, and drinks.</p>
+    </div>
+    </div>  
 </body>
 </html>
+
