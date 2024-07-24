@@ -244,20 +244,19 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Kumbh Sans', sans-serif;
-    display: flex;
-    flex-direction: column;
     background-color: #fff;
 }
 
 .sidebar {
     width: 210px;
+    height: 100%;
     background-color: #919c70;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
-    height: 100vh;
+    top: -1px;
     position: fixed;
     transition: width 0.3s ease;
 }
@@ -329,10 +328,9 @@ body {
     margin-left: 250px;
     padding: 0;
     flex: 1;
+    margin-top: -19px;
     background-color: #ECF0F1;
     transition: margin-left 0.3s ease;
-    position: relative;
-    top: -18px;
 }
 
 .image-container {
@@ -340,8 +338,8 @@ body {
 }
 
 .image-container img {
-    width: 100%;
-    height: 105%;
+    height: 97%;
+    width: auto;
     display: block;
 }
 
@@ -369,8 +367,9 @@ body {
 }
 
 .aboutus {
+    height: 70%;
     margin-left: 250px;
-    padding: 40px;
+    padding: 40px 40px 0 40px; 
 }
 
 .aboutus h2 {
@@ -378,13 +377,70 @@ body {
     color: #c46a48;
 }
 
-#p1{
+#p1 {
     font-size: 2.8rem;
     color: #010135f2;
 }
 
-#p2{
+#p2 {
     color: #010135f2;
+}
+
+.custom-list {
+    color: rgba(48, 48, 48, 0.511);
+    padding-left: 20px;
+}
+
+.custom-list li {
+    margin-bottom: 20px;
+    padding: 5px; 
+}
+
+.aboutme-img img {
+    height: 25%;
+    width: auto;
+    float: right;
+    margin-top: -20px;
+}
+
+.blue-section {
+    background-color: rgb(74, 74, 100);
+    color: white;
+    padding: 40px;
+    height: 120%;
+    font-family: Gill Sans, sans-serif;
+}
+
+.blue-section h2 {
+    font-size: 2rem;
+    text-align: center;
+    color: #c46a48;
+}
+
+.blue-section_img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; 
+}
+
+.blue-section_img {
+    width: 550px;
+    height: 550px; 
+    overflow: hidden; 
+    border-radius: 10px; 
+}
+
+.blue-section_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center; 
+    transition: transform 0.3s ease;
+}
+
+.blue-section_img img:hover {
+    transform: scale(1.1); 
 }
 
 /* Media Queries for Responsive Design */
@@ -397,7 +453,6 @@ body {
 
     .main-content {
         margin-left: 0;
-        padding: 0;
     }
 
     .header {
@@ -414,6 +469,21 @@ body {
 
     .header p {
         font-size: 1rem;
+    }
+
+    .aboutus, .blue-section {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .blue-section_img {
+        width: 100%;
+        height: auto; 
+    }
+
+    .blue-section_img img {
+        width: 100%;
+        height: auto; 
     }
 }
 

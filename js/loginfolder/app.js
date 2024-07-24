@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         localStorage.removeItem('password');
                     }
 
-                    // Redirect to index.html
+
                     window.location.href = 'index.html';
                 } else {
                     loginMessage.textContent = 'Login failed';
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loginFormContainer.classList.remove('hidden');
         dashboard.classList.add('hidden');
 
-        // Redirect to index.html
+
         window.location.href = 'index.html';
     });
 
