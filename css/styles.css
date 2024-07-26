@@ -340,7 +340,7 @@ body {
 .image-container img {
     height: 97%;
     width: auto;
-    display: block;
+    object-fit: cover;
 }
 
 .header {
@@ -397,18 +397,23 @@ body {
 }
 
 .aboutme-img img {
-    height: 25%;
+    position: absolute;
+    height: 40%;
     width: auto;
-    float: right;
-    margin-top: -20px;
+    right: 10%;
+    top: 110%;
 }
 
 .blue-section {
     background-color: rgb(74, 74, 100);
     color: white;
     padding: 40px;
-    height: 120%;
     font-family: Gill Sans, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    max-width: 70%;  
 }
 
 .blue-section h2 {
@@ -419,28 +424,85 @@ body {
 
 .blue-section_img-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap; 
 }
 
 .blue-section_img {
     width: 550px;
-    height: 550px; 
-    overflow: hidden; 
-    border-radius: 10px; 
+    height: 550px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 20px;
 }
 
 .blue-section_img img {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
-    object-position: center; 
+    object-fit: cover;
+    object-position: center;
     transition: transform 0.3s ease;
 }
 
 .blue-section_img img:hover {
     transform: scale(1.1); 
+}
+
+.img1_text, .img2_text {
+    width: 550px;
+    margin: 20px;
+}
+
+.img1_text h2, .img2_text h2 {
+    font-size: 2rem;
+}
+
+.img1_text p, .img2_text p {
+    font-size: 1.2rem;
+}
+
+.img1_text {
+    text-align: left;
+}
+
+.img2_text {
+    text-align: right;
+}
+
+.blue-section-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.rating-button,
+.menu-button {
+    display: inline-block;
+    background-color: #c46a48;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.menu-button:hover,
+.rating-button:hover {
+    background-color: #944f35; /* Darker shade on hover */
+}
+
+
+
+.blue-section-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 100px;
 }
 
 /* Media Queries for Responsive Design */
@@ -484,6 +546,12 @@ body {
     .blue-section_img img {
         width: 100%;
         height: auto; 
+    }
+
+    .blue-section_img,
+    .img1_text,
+    .img2_text {
+        width: 100%;
     }
 }
 
