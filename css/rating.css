@@ -1,73 +1,94 @@
-* {
-    box-sizing: border-box;
+body {
     margin: 0;
     padding: 0;
     font-family: 'Kumbh Sans', sans-serif;
+    background-color: #fff;
+    padding-left: 270px; /* To prevent content from being overlapped by the sidebar */
+    padding-right: 20px; /* Optional: to add some spacing on the right side */
 }
 
-.page-container {
-    background: #919c70;
-    height: 80px;
+.sidebar {
+    width: 270px;
+    height: 100%;
+    background-color: #919c70;
+    color: white;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-}
-
-.container {
-    display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    height: 90px;
-    z-index: 1;
-    width: 100%;
-    padding: 0 50px;
-    max-width: 1300px;
-    margin: 0 auto;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: width 0.3s ease;
 }
 
-#logo {
-    background-color: #131313;
-    align-items: center;
-    background-image: linear-gradient(to top, #fff 0%, #fff 100%);
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
+.sidebar-content {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px;
+    font-family: Gill Sans, sans-serif;
+    font-size: 1.5rem;
+    color: white;
 }
 
-.fa-gem {
-    margin-right: 0.5rem;
+.logo {
+    text-align: center;
+    margin-bottom: 75px;
+}
+
+.logo img {
+    height: 100px;
+}
+
+.logo h2 {
+    margin: 10px 0 0;
+    color: white;
 }
 
 .menu {
-    display: flex;
-    align-items: center;
     list-style: none;
-    gap: 30px;
-    font-size: 18px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
 }
 
-.links {
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.menu li {
+    width: 100%;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.menu a {
+    color: white;
     text-decoration: none;
-    padding: 0 1rem;
-    height: 100%;
+    font-size: 1rem;
+    display: block;
+    padding: 10px;
+}
+
+.menu a:hover {
+    background-color: #c3b091;
+    color: #000;
+    transition: all 0.3s ease-out;
 }
 
 .btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 1rem;
+    background-color: #c3b091;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 20px 0;
+    display: inline-block;
     width: 100%;
+}
+
+.btn:hover {
+    background-color: #919c70;
+    color: white;
+    transition: all 0.3s ease-out;
 }
 
 .button {
@@ -97,174 +118,89 @@
     color: #c0c0c0;
 }
 
-.container_2 {
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: calc(100% - 320px); 
     width: 400px;
-    padding: 20px 30px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    margin: 20px auto;
 }
 
-.star-widget {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.container h1 {
+    font-size: 24px;
+    margin: 0;
 }
 
-.star-widget .stars {
-    display: flex;
-    flex-direction: row;
-    direction: rtl;
+.rating {
+    font-size: 20px;
+    margin: 10px 0;
 }
 
-.star-widget input {
-    display: none;
+.stars {
+    font-size: 30px;
+    margin: 10px 0;
 }
 
-.star-widget label {
-    font-size: 25px;
-    color: #444;
-    padding: 10px;
-    transition: all 0.2s ease;
-}
-
-.star-widget input:not(:checked) ~ label:hover,
-.star-widget input:not(:checked) ~ label:hover ~ label {
-    color: #fd4;
-}
-
-.star-widget input:checked ~ label {
-    color: #fd4;
-}
-
-.star-widget input#rate-5:checked ~ label {
-    color: #fe7;
-    text-shadow: 0 0 20px #952;
-}
-
-.star-widget form .textarea {
-    height: 150px;
-    width: 90%;
-    margin: 20px 0;
-    display: flex;
-    justify-content: center;
-}
-
-form .btn_2{
-    height: 45px;
-    width: 100%;
-    margin: 15px 0;
-}
-
-form .btn_2 button{
-    height: 100%;
-    width: 100%;
-    border: 1px solid #444;
-    outline: none;
-    background: #222;
-    color: #999;
-    font-size: 17px;
-    font-weight: 500;
-    text-transform: uppercase;
+.star {
     cursor: pointer;
-    transition: all 0.3s ease;
+    margin: 0 5px;
 }
 
-form.btn_2 button:hover{
-    background: #1b1b1b;
+.one {
+    color: rgb(255, 0, 0);
 }
 
-.star-widget form .textarea textarea {
-    height: 100%;
-    width: 100%;
-    outline: none;
-    color: #000;
-    border: 1px solid #333;
-    display: block;
-    margin: 0 auto;
+.two {
+    color: rgb(255, 106, 0);
+}
+
+.three {
+    color: rgb(251, 255, 120);
+}
+
+.four {
+    color: rgb(255, 255, 0);
+}
+
+.five {
+    color: rgb(24, 159, 14);
+}
+
+textarea {
+    width: 90%;
     padding: 10px;
-    font-size: 17px;
-    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-@media screen and (max-width: 960px) {
-    .container {
-        display: flex;
-        justify-content: space-between;
-        height: 80px;
-        z-index: 1;
-        width: 100%;
-        max-width: 1300px;
-        padding: 0;
-    }
-    .menu {
-        display: none;
-        grid-template-columns: auto;
-        margin: 0;
-        width: 100%;
-        position: absolute;
-        top: -1000px;
-        opacity: 0;
-        transition: all 0.5s ease;
-        height: 50vh;
-        z-index: -1;
-    }
-    .menu.active {
-        display: block;
-        background: #131313;
-        top: 80px;
-        opacity: 1;
-        transition: all 0.5s ease;
-        z-index: 99;
-        height: 50vh;
-        font-size: 1.6rem;
-    }
-    #logo {
-        padding-left: 25px;
-    }
-    .toggle .bar {
-        width: 25px;
-        height: 3px;
-        background: #fff;
-        margin: 5px auto;
-        transition: all 0.3s ease;
-    }
-    .item {
-        width: 100%;
-    }
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
-    .links {
-        text-align: center;
-        padding: 2rem;
-        width: 100%;
-        display: table;
-    }
+button:hover {
+    background-color: #0056b3;
+}
 
-    #mobile-menu {
-        position: absolute;
-        top: 20%;
-        right: 5%;
-        transform: translate(5%, 20%);
-    }
+.reviews {
+    margin-top: 20px;
+    text-align: left;
+}
 
-    .btn {
-        padding-bottom: 2rem;
-    }
+.review {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px 0;
+}
 
-    .button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 80%;
-        height: 80px;
-        margin: 0;
-    }
-
-    .toggle .bar {
-        display: block;
-        cursor: pointer;
-    }
+.review p {
+    margin: 0;
 }

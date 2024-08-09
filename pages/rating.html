@@ -9,59 +9,46 @@
 </head>
 <body>
     <nav class="page-container">
-        <div class="container">
-            <a href="index.html" id="logo">
-                <img src="../images/smusicon.png" alt="Logo" style="height: 50px; vertical-align: middle;">
-                <h2 style="display: inline; vertical-align: middle;">HOWARD CAFE</h2>
-            </a>
-            <div class="toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+        <div class="sidebar">
+            <div class="sidebar-content">
+                <div class="logo">
+                    <img src="../images/smusicon.png" alt="Logo">
+                    <h2>HOWARD CAFE</h2>
+                </div>
+                <ul class="menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="../pages/menu.html">Menu</a></li>
+                    <li><a href="../pages/rating.html">Rating</a></li>
+                    <li><a href="../pages/about.html">About Us</a></li>
+                </ul>
+                <a href="login.html" class="btn">Log In</a>
             </div>
-            <ul class="menu">
-                <li class="item">
-                    <a href="../pages/menu.html" class="links"> Menu </a>
-                </li>
-                <li class="item">
-                    <a href="../pages/rating.html" class="links"> Rating </a>
-                </li>
-                <li class="item">
-                    <a href="../pages/about.html" class="links"> About Us </a>
-                </li>
-                <li class="btn" id="authButton">
-                    <a href="login.html" class="button"> Log In </a>
-                </li>
-            </ul>
         </div>
     </nav>
-    
-
-    <div class="container_2">
-        <div class="star-widget">
-            <form action="#">
-                <div class="stars">
-                    <input type="radio" name="rate" id="rate-5">
-                    <label for="rate-5" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-4">
-                    <label for="rate-4" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-3">
-                    <label for="rate-3" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-2">
-                    <label for="rate-2" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-1">
-                    <label for="rate-1" class="fas fa-star"></label>
-                </div>
-                <div class="textarea">
-                    <textarea cols="30" placeholder="Describe your comments.."></textarea>
-                </div>
-                <div class="btn_2">
-                    <button type="submit">Post</button>
-                </div>
-            </form>
+    <div class="container">
+        <h1>Food 1</h1>
+        <div class="rating">
+            <span id="rating">0</span>/5
+        </div>
+        <div class="stars" id="stars">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <p>Share your review:</p>
+        <textarea id="review"
+                placeholder="Write your review here">
+        </textarea>
+        <button id="submit">Submit</button>
+        <div class="reviews" id="reviews">
         </div>
     </div>
 
-    <script src="../js/app.js"></script>
+    <script src="../js/rating/rating.js"></script>
+    <script src="../js/rating/rating_server.js"></script>
+    <script src="../js/rating/rating_app.js"></script>
+    <script src="../rating_mainserver.js"></script>
 </body>
 </html>
