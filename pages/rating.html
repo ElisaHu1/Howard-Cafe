@@ -25,8 +25,13 @@
             </div>
         </div>
     </nav>
+
     <div class="container">
-        <h1>Food 1</h1>
+        <h1>Rate a Food or Drink Item</h1>
+        <p>no goofy stuff</p>
+        <div class="chatbox-container">
+            <input type="text" id="foodInput" placeholder="Type the item name" />
+        </div>
         <div class="rating">
             <span id="rating">0</span>/5
         </div>
@@ -38,17 +43,12 @@
             <span class="star" data-value="5">★</span>
         </div>
         <p>Share your review:</p>
-        <textarea id="review"
-                placeholder="Write your review here">
-        </textarea>
+        <textarea id="review" placeholder="Write your review here"></textarea>
         <button id="submit">Submit</button>
         <div class="reviews" id="reviews">
         </div>
     </div>
 
-    <script src="../js/rating/rating.js"></script>
-    <script src="../js/rating/rating_server.js"></script>
     <script src="../js/rating/rating_app.js"></script>
-    <script src="../rating_mainserver.js"></script>
 </body>
 </html>

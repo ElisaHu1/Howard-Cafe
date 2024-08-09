@@ -20,9 +20,15 @@ app.use((req, res, next) => {
     next();
 });
 
+// Ensure reviews.json exists
+if (!fs.existsSync(reviewsFilePath)) {
+    fs.writeFileSync(reviewsFilePath, JSON.stringify([], null, 2));
+}
+
 // Route to handle posting reviews
 app.post('/api/reviews', (req, res) => {
     const newReview = {
+        food: req.body.food,  // Store the food name from the request
         rating: req.body.rating,
         review: req.body.review
     };

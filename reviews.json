@@ -1,0 +1,12 @@
+[
+  {
+    "food": "Macha",
+    "rating": 5,
+    "review": "Its good"
+  },
+  {
+    "food": "Donuts",
+    "rating": 5,
+    "review": "More flavors"
+  }
+]

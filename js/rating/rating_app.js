@@ -3,6 +3,9 @@ const rating = document.getElementById("rating");
 const reviewText = document.getElementById("review");
 const submitBtn = document.getElementById("submit");
 const reviewsContainer = document.getElementById("reviews");
+// Get the food input element
+const foodInput = document.getElementById("foodInput");
+const foodName = document.querySelector(".container").getAttribute("data-food");
 
 // Add event listeners to stars
 stars.forEach((star) => {
@@ -31,13 +34,15 @@ stars.forEach((star) => {
 submitBtn.addEventListener("click", () => {
     const review = reviewText.value.trim();
     const userRating = parseInt(rating.innerText);
+    const food = foodInput.value.trim();  // Get the food name from input
 
-    if (!userRating || !review) {
-        alert("Please select a rating and provide a review before submitting.");
+    if (!userRating || !review || !food) {  // Include food name validation
+        alert("Please select a rating, provide a food name, and a review before submitting.");
         return;
     }
 
     const newReview = {
+        food: food,  // Use the food name from input
         rating: userRating,
         review: review
     };
@@ -59,6 +64,7 @@ submitBtn.addEventListener("click", () => {
     .then(data => {
         console.log(data);
         // Optionally update the UI or clear the form
+        foodInput.value = "";  // Clear the food input
         reviewText.value = "";
         rating.innerText = "0";
         stars.forEach((s) => s.classList.remove("one", "two", "three", "four", "five", "selected"));
