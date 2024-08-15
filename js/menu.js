@@ -5,12 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     menuButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const content = this.nextElementSibling; // Get the content div next to the clicked button
-
-            // Toggle the active class on the clicked button
+            const content = this.nextElementSibling;
             this.classList.toggle('active');
 
-            // Close all other content sections except the one clicked
+
             menuButtons.forEach(otherButton => {
                 if (otherButton !== this) {
                     otherButton.classList.remove('active');

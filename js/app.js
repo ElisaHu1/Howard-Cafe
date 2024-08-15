@@ -8,3 +8,4 @@ window.addEventListener('load', function() {
         imageContainer.style.display = 'block';        
     }, 500);
 });
+

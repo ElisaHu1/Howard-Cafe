@@ -7,7 +7,6 @@ const reviewsContainer = document.getElementById("reviews");
 const foodInput = document.getElementById("foodInput");
 const foodName = document.querySelector(".container").getAttribute("data-food");
 
-// Add event listeners to stars
 stars.forEach((star) => {
     star.addEventListener("click", () => {
         const value = parseInt(star.getAttribute("data-value"));
@@ -30,7 +29,6 @@ stars.forEach((star) => {
     });
 });
 
-// Add event listener to the submit button
 submitBtn.addEventListener("click", () => {
     const review = reviewText.value.trim();
     const userRating = parseInt(rating.innerText);
@@ -68,7 +66,7 @@ submitBtn.addEventListener("click", () => {
         reviewText.value = "";
         rating.innerText = "0";
         stars.forEach((s) => s.classList.remove("one", "two", "three", "four", "five", "selected"));
-        alert('Review submitted successfully!');
+        alert('Review submitted successfully! \nWe will review it as soon as possible :)');
     })
     .catch(error => {
         console.error('Error:', error);

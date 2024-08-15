@@ -1,89 +1,44 @@
-const stars = document.querySelectorAll(".star");
-const rating = document.getElementById("rating");
-const reviewText = document.getElementById("review");
-const submitBtn = document.getElementById("submit");
-const reviewsContainer = document.getElementById("reviews");
+const express = require('express');
+const bodyParser = require('body-parser');
+const { readReviews, writeReview } = require('./reviewHandler');
 
-// Add event listeners to stars
-stars.forEach((star) => {
-    star.addEventListener("click", () => {
-        const value = parseInt(star.getAttribute("data-value"));
-        rating.innerText = value;
+const app = express();
+const port = process.env.PORT || 3001;
 
-        // Remove all existing classes from stars
-        stars.forEach((s) => s.classList.remove("one", "two", "three", "four", "five"));
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-        // Add the appropriate class to each star based on the selected star's value
-        stars.forEach((s, index) => {
-            if (index < value) {
-                s.classList.add(getStarColorClass(value));
-            }
-        });
-
-        // Remove "selected" class from all stars
-        stars.forEach((s) => s.classList.remove("selected"));
-        // Add "selected" class to the clicked star
-        star.classList.add("selected");
-    });
+// Enable CORS for testing purposes
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
 });
 
-// Add event listener to the submit button
-submitBtn.addEventListener("click", () => {
-    const review = reviewText.value.trim();
-    const userRating = parseInt(rating.innerText);
-
-    if (!userRating || !review) {
-        alert("Please select a rating and provide a review before submitting.");
-        return;
-    }
-
+// Route to handle posting reviews
+app.post('/api/reviews', (req, res) => {
     const newReview = {
-        rating: userRating,
-        review: review
+        food: req.body.food,
+        rating: req.body.rating,
+        review: req.body.review
     };
 
-    // Send the review to the server
-    fetch('http://localhost:3001/api/reviews', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newReview)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to save review');
-        }
-        return response.text();
-    })
-    .then(data => {
-        console.log(data);
-        // Optionally update the UI or clear the form
-        reviewText.value = "";
-        rating.innerText = "0";
-        stars.forEach((s) => s.classList.remove("one", "two", "three", "four", "five", "selected"));
-        alert('Review submitted successfully!');
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Failed to submit review.');
+    writeReview(newReview, (err, message) => {
+        if (err) return res.status(500).send('Failed to save review.');
+        res.status(201).send(message);
     });
 });
 
-// Function to determine the class name for the star based on the rating value
-function getStarColorClass(value) {
-    switch (value) {
-        case 1:
-            return "one";
-        case 2:
-            return "two";
-        case 3:
-            return "three";
-        case 4:
-            return "four";
-        case 5:
-            return "five";
-        default:
-            return "";
-    }
-}
+// Route to get all reviews
+app.get('/api/reviews', (req, res) => {
+    readReviews((err, reviews) => {
+        if (err) return res.status(500).send('Failed to read reviews.');
+        res.status(200).json(reviews);
+    });
+});
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});

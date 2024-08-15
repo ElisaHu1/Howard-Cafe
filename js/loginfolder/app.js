@@ -8,15 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const dashboard = document.getElementById('dashboard');
     const registerFormContainer = document.getElementById('registerFormContainer');
     const loginFormContainer = document.getElementById('loginFormContainer');
-    const rememberMeCheckbox = document.getElementById('rememberMe');
-    const loginUsername = document.getElementById('loginUsername');
-    const loginPassword = document.getElementById('loginPassword');
-
-    if (localStorage.getItem('rememberMe') === 'true') {
-        loginUsername.value = localStorage.getItem('username') || '';
-        loginPassword.value = localStorage.getItem('password') || ''; 
-        rememberMeCheckbox.checked = true;
-    }
 
     registerForm.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -45,8 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     loginForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        const username = loginUsername.value;
-        const password = loginPassword.value;
+        const username = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
 
         fetch('http://localhost:3000/login', {
             method: 'POST',
@@ -63,18 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     registerFormContainer.classList.add('hidden');
                     loginFormContainer.classList.add('hidden');
                     dashboard.classList.remove('hidden');
-
-                    if (rememberMeCheckbox.checked) {
-                        localStorage.setItem('rememberMe', 'true');
-                        localStorage.setItem('username', username);
-                        localStorage.setItem('password', password); 
-                    } else {
-                        localStorage.setItem('rememberMe', 'false');
-                        localStorage.removeItem('username');
-                        localStorage.removeItem('password');
-                    }
-
-
                     window.location.href = 'index.html';
                 } else {
                     loginMessage.textContent = 'Login failed';
@@ -90,26 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
         registerFormContainer.classList.remove('hidden');
         loginFormContainer.classList.remove('hidden');
         dashboard.classList.add('hidden');
-
-
-        window.location.href = 'index.html';
     });
-
-    function toggleAuthButton() {
-        const authButton = document.getElementById('authButton');
-        const token = localStorage.getItem('token');
-
-        if (token) {
-            authButton.innerHTML = '<a href="#" id="logoutButton" class="button">Log Out</a>';
-            document.getElementById('logoutButton').addEventListener('click', function() {
-                localStorage.removeItem('token');
-                toggleAuthButton();
-                window.location.href = 'index.html'; 
-            });
-        } else {
-            authButton.innerHTML = '<a href="login.html" class="button">Log In</a>';
-        }
-    }
 
     function checkLoginStatus() {
         const token = localStorage.getItem('token');
@@ -130,15 +90,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     } else {
                         localStorage.removeItem('token');
                     }
-                    toggleAuthButton();
                 })
                 .catch(error => {
                     console.error('Error:', error);
                     localStorage.removeItem('token');
-                    toggleAuthButton();
                 });
-        } else {
-            toggleAuthButton();
         }
     }
 

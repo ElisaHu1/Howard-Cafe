@@ -3,19 +3,19 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const sqlite3 = require('sqlite3').verbose();
-const cors = require('cors'); // Add this line
+const cors = require('cors'); 
 
 const app = express();
 const PORT = 3000;
 const SECRET_KEY = 'your_secret_key';
-const VALID_KEYWORD = 'your_keyword'; // Replace with your actual keyword
+const VALID_KEYWORD = 'your_keyword'; 
 const ADMIN_USERNAME = 'admin';
-const ADMIN_PASSWORD = 'adminpassword'; // Replace with your desired admin password
+const ADMIN_PASSWORD = 'adminpassword'; 
 
-app.use(cors()); // Add this line to enable CORS
+app.use(cors()); 
 app.use(bodyParser.json());
 
-// Open a persistent SQLite database file
+
 const db = new sqlite3.Database('./users.db', (err) => {
     if (err) {
         console.error('Error opening database:', err.message);
