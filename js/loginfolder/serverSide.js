@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const sqlite3 = require('sqlite3').verbose();
-const cors = require('cors'); 
+const cors = require('cors');
+const fs = require("fs");
 
 const app = express();
 const PORT = 3000;
@@ -77,7 +78,7 @@ app.post('/login', (req, res) => {
             return res.status(401).json({ message: 'Invalid password' });
         }
 
-        const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: 86400 });
+        const token = jwt.sign({ id: user.username }, SECRET_KEY, { expiresIn: 86400 });
         res.status(200).json({ auth: true, token });
     });
 });
@@ -98,6 +99,38 @@ function verifyToken(req, res, next) {
         next();
     });
 }
+// New route to serve reviews JSON file
+app.get('/getReviews', (req, res) => {
+    fs.readFile('reviews.json', (err, data) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error reading reviews file' });
+        }
+        res.status(200).json(JSON.parse(data));
+    });
+});
+
+app.post('/submitReview', verifyToken, (req, res) => {
+    const { dish, rating, comment } = req.body;
+
+    const user = req.userId; // Get the logged-in user
+
+    fs.readFile('reviews.json', (err, data) => {
+        if (err) throw err;
+        const reviews = JSON.parse(data);
+
+        const dishReviews = reviews.find(r => r.dish === dish);
+        if (dishReviews) {
+            dishReviews.comments.push({ user, rating, comment });
+        } else {
+            reviews.push({ dish, comments: [{ user, rating, comment }] });
+        }
+
+        fs.writeFile('reviews.json', JSON.stringify(reviews, null, 2), err => {
+            if (err) throw err;
+            res.status(200).send('Review submitted successfully!');
+        });
+    });
+});
 
 // Protected route
 app.get('/dashboard', verifyToken, (req, res) => {
