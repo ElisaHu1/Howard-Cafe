@@ -1,0 +1,42 @@
+[
+  {
+    "dish": "Spaghetti Carbonara",
+    "comments": [
+      {
+        "user": "Alice",
+        "rating": 5,
+        "comment": "Delicious and creamy!"
+      },
+      {
+        "user": "Bob",
+        "rating": 4,
+        "comment": "Tasty, but a bit too salty."
+      }
+    ]
+  },
+  {
+    "dish": "Margherita Pizza",
+    "comments": [
+      {
+        "user": "Charlie",
+        "rating": 5,
+        "comment": "Perfect crust and cheese ratio."
+      },
+      {
+        "user": "Dave",
+        "rating": 3,
+        "comment": "Good, but I've had better."
+      }
+    ]
+  },
+  {
+    "dish": "123",
+    "comments": [
+      {
+        "user": "admin",
+        "rating": 4,
+        "comment": "123"
+      }
+    ]
+  }
+]

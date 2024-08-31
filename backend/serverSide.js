@@ -111,22 +111,36 @@ app.get('/getReviews', (req, res) => {
 
 app.post('/submitReview', verifyToken, (req, res) => {
     const { dish, rating, comment } = req.body;
+    const user = req.userId;
 
-    const user = req.userId; // Get the logged-in user
+    console.log("DEBUG: Received review submission:", { dish, rating, comment, user });
 
     fs.readFile('reviews.json', (err, data) => {
-        if (err) throw err;
-        const reviews = JSON.parse(data);
+        if (err) {
+            console.error("DEBUG: Error reading reviews.json:", err);
+            throw err;
+        }
+
+        console.log("DEBUG: Successfully read reviews.json");
+
+        let reviews = JSON.parse(data);
 
         const dishReviews = reviews.find(r => r.dish === dish);
+
         if (dishReviews) {
             dishReviews.comments.push({ user, rating, comment });
+            console.log("DEBUG: Appended review to existing dish:", dish);
         } else {
             reviews.push({ dish, comments: [{ user, rating, comment }] });
+            console.log("DEBUG: Created new dish entry:", dish);
         }
 
         fs.writeFile('reviews.json', JSON.stringify(reviews, null, 2), err => {
-            if (err) throw err;
+            if (err) {
+                console.error("DEBUG: Error writing to reviews.json:", err);
+                throw err;
+            }
+            console.log("DEBUG: Successfully wrote to reviews.json");
             res.status(200).send('Review submitted successfully!');
         });
     });

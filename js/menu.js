@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const comment = document.getElementById('comment').value;
 
     // todo: delete for each loop, compass the fetch in the demo
-    //
     menuButtons.forEach(button => {
         button.addEventListener('click', function() {
             const content = this.nextElementSibling;

@@ -3,9 +3,9 @@ const rating = document.getElementById("rating");
 const reviewText = document.getElementById("review");
 const submitBtn = document.getElementById("submit");
 const reviewsContainer = document.getElementById("reviews");
-// Get the food input element
+// Get the dish input element
 const foodInput = document.getElementById("foodInput");
-const foodName = document.querySelector(".container").getAttribute("data-food");
+const foodName = document.querySelector(".container").getAttribute("data-dish");
 
 stars.forEach((star) => {
     star.addEventListener("click", () => {
@@ -30,47 +30,51 @@ stars.forEach((star) => {
 });
 
 submitBtn.addEventListener("click", () => {
-    const review = reviewText.value.trim();
+    const comment = reviewText.value.trim();
     const userRating = parseInt(rating.innerText);
-    const food = foodInput.value.trim();  // Get the food name from input
+    const dish = foodInput.value.trim();  // Get the dish name from input
 
-    if (!userRating || !review || !food) {  // Include food name validation
-        alert("Please select a rating, provide a food name, and a review before submitting.");
+    if (!userRating || !comment || !dish) {  // Include dish name validation
+        alert("Please select a rating, provide a dish name, and a comment before submitting.");
         return;
     }
 
     const newReview = {
-        food: food,  // Use the food name from input
+        dish: dish,  // Use the dish name from input
         rating: userRating,
-        review: review
+        comment: comment
     };
 
-    // Send the review to the server
-    fetch('http://localhost:3001/api/reviews', {
+    // Send the comment to the server
+    fetch('http://localhost:3000/submitReview', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'x-access-token': localStorage.getItem('token')
         },
         body: JSON.stringify(newReview)
     })
     .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to save review');
+        if (response.status === 403) {
+            throw new Error('You need to login to submit comment');
+        }
+        else if (!response.ok) {
+            throw new Error('Failed to save comment, contact admin');
         }
         return response.text();
     })
     .then(data => {
         console.log(data);
         // Optionally update the UI or clear the form
-        foodInput.value = "";  // Clear the food input
+        foodInput.value = "";  // Clear the dish input
         reviewText.value = "";
         rating.innerText = "0";
         stars.forEach((s) => s.classList.remove("one", "two", "three", "four", "five", "selected"));
-        alert('Review submitted successfully! \nWe will review it as soon as possible :)');
+        alert('Review submitted successfully! \nWe will comment it as soon as possible :)');
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Failed to submit review.');
+        alert(error);
     });
 });
 
