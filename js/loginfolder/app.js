@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const registerForm = document.getElementById('registerForm');
     const loginForm = document.getElementById('loginForm');
     const logoutButton = document.getElementById('logoutButton');
+    const showRegisterForm = document.getElementById('showRegisterForm');
     const registerMessage = document.getElementById('registerMessage');
     const loginMessage = document.getElementById('loginMessage');
     const welcomeMessage = document.getElementById('welcomeMessage');

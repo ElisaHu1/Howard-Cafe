@@ -9,3 +9,13 @@ window.addEventListener('load', function() {
     }, 500);
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const logoutButton = document.getElementById('logoutButton');
+
+        logoutButton.addEventListener('click', function() {
+            localStorage.removeItem('token');
+            alert('Logout successfully! :)');
+        });
+
+
+});

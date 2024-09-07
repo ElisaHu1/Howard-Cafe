@@ -7,6 +7,12 @@ const reviewsContainer = document.getElementById("reviews");
 const foodInput = document.getElementById("foodInput");
 const foodName = document.querySelector(".container").getAttribute("data-dish");
 
+const ratingContainer = document.getElementById('ratingsContainer');
+const container = document.querySelector('.container');
+
+loadReviews(ratingContainer);
+
+
 stars.forEach((star) => {
     star.addEventListener("click", () => {
         const value = parseInt(star.getAttribute("data-value"));
@@ -78,6 +84,10 @@ submitBtn.addEventListener("click", () => {
     });
 });
 
+if (isTokenValid()) {
+    container.classList.remove('hidden');
+}
+
 // Function to determine the class name for the star based on the rating value
 function getStarColorClass(value) {
     switch (value) {
@@ -95,3 +105,37 @@ function getStarColorClass(value) {
             return "";
     }
 }
+
+function loadReviews(container) {
+    fetch('http://localhost:3000/getReviews')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(reviews => {
+            container.innerHTML = '<h2>Menu Reviews</h2>';
+            reviews.forEach(review => {
+                const dishReview = document.createElement('div');
+                dishReview.innerHTML = `<h3>${review.dish}</h3>`;
+                review.comments.forEach(comment => {
+                    dishReview.innerHTML += `
+                        <p><strong>${comment.user}:</strong> ${comment.rating} stars - ${comment.comment}</p>
+                    `;
+                });
+                container.appendChild(dishReview);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching reviews:', error);
+            container.innerHTML = 'Failed to load reviews.';
+        });
+}
+
+
+function isTokenValid() {
+    const token = localStorage.getItem('token');
+    return token !== null && token !== '';
+}
+
