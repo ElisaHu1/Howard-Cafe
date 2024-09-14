@@ -58,7 +58,11 @@ app.post('/register', (req, res) => {
 
     db.run(`INSERT INTO users (username, password) VALUES (?, ?)`, [username, hashedPassword], (err) => {
         if (err) {
-            return res.status(500).json({ message: 'User registration failed' });
+            if (err.code === 'SQLITE_CONSTRAINT' && err.errno === 19) {
+                return res.status(409).json({ message: 'Username is already taken' });
+            }
+            console.error("database error: ", err)
+            return res.status(500).json({ message: 'internal service error' });
         }
         res.status(201).json({ message: 'User registered successfully' });
     });

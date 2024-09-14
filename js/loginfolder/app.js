@@ -3,12 +3,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     const logoutButton = document.getElementById('logoutButton');
     const showRegisterForm = document.getElementById('showRegisterForm');
+    const showLoginForm = document.getElementById('showLoginForm');
     const registerMessage = document.getElementById('registerMessage');
     const loginMessage = document.getElementById('loginMessage');
     const welcomeMessage = document.getElementById('welcomeMessage');
     const dashboard = document.getElementById('dashboard');
     const registerFormContainer = document.getElementById('registerFormContainer');
     const loginFormContainer = document.getElementById('loginFormContainer');
+
+    showRegisterForm.addEventListener("click", function () {
+        loginFormContainer.classList.add("hidden")
+        registerFormContainer.classList.remove("hidden")
+    })
+
+    showLoginForm.addEventListener("click", function () {
+        loginFormContainer.classList.remove("hidden")
+        registerFormContainer.classList.add("hidden")
+    })
 
     registerForm.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -26,11 +37,15 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 registerMessage.textContent = data.message;
-                if (data.message === 'User registered successfully') {
+                if (response.status === 201) {
                     registerForm.reset();
+                    alert('User registered successfully! \n head to the login page to login :)');
+                } else {
+                    alert('User registered FAILED! \n '+ data.message);
                 }
             })
             .catch(error => {
+                alert('User registered FAILED! \n '+ data.message);
                 console.error('Error:', error);
             });
     });
@@ -67,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     logoutButton.addEventListener('click', function() {
         localStorage.removeItem('token');
-        registerFormContainer.classList.remove('hidden');
+        registerFormContainer.classList.add('hidden');
         loginFormContainer.classList.remove('hidden');
         dashboard.classList.add('hidden');
     });
