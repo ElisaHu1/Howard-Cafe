@@ -38,5 +38,25 @@
         "comment": "123"
       }
     ]
+  },
+  {
+    "dish": "1234123",
+    "comments": [
+      {
+        "user": "admin",
+        "rating": 3,
+        "comment": "123134234"
+      }
+    ]
+  },
+  {
+    "dish": "steak",
+    "comments": [
+      {
+        "user": "admin",
+        "rating": 4,
+        "comment": "good"
+      }
+    ]
   }
 ]
