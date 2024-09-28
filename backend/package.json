@@ -1,9 +1,9 @@
 {
   "name": "my-backend",
   "version": "1.0.0",
-  "main": "./backend/serverSide.js",
+  "main": "serverSide.js",
   "scripts": {
-    "start": "node ./backend/serverSide.js"
+    "start": "node serverSide.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

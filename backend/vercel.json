@@ -2,13 +2,13 @@
   "version": 2,
   "builds": [
     {
-      "src": "./backend/serverSide.js",
+      "src": "serverSide.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "./backend/serverSide.js",
+      "src": "/(.*)",
       "dest": "serverSide.js"
     }
   ]
