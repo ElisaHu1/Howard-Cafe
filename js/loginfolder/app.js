@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const registerForm = document.getElementById('registerForm');
+        const registerForm = document.getElementById('registerForm');
     const loginForm = document.getElementById('loginForm');
     const logoutButton = document.getElementById('logoutButton');
     const showRegisterForm = document.getElementById('showRegisterForm');
